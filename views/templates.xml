@@ -1,0 +1,52 @@
+<openerp>
+    <data>
+         <record id="action_invoice_tree1_unified" model="ir.actions.act_window">
+            <field name="name">Sales Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','in',['out_invoice', 'out_refund'])]</field>
+            <field name="context">{'journal_type': 'sale'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a customer invoice.
+              </p><p>
+                Odoo's electronic invoicing allows to ease and fasten the
+                collection of customer payments. Your customer receives the
+                invoice by email and he can pay online and/or import it
+                in his own system.
+              </p><p>
+                The discussions with your customer are automatically displayed at
+                the bottom of each invoice.
+              </p>
+            </field>
+        </record>
+
+        <menuitem action="action_invoice_tree1_unified" id="menu_action_invoice_tree1_unified" parent="account.menu_finance_receivables"/>
+
+        <record id="action_invoice_tree2_unified" model="ir.actions.act_window">
+            <field name="name">Supplier Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','in',['in_invoice', 'in_refund'])]</field>
+            <field name="context">{'journal_type': 'purchase'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to record a new supplier invoice.
+              </p><p>
+                You can control the invoice from your supplier according to
+                what you purchased or received. Odoo can also generate
+                draft invoices automatically from purchase orders or receipts.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_invoice_tree2_unified" id="menu_action_invoice_tree2_unified" parent="account.menu_finance_payables"/>
+
+        
+    </data>
+</openerp>
